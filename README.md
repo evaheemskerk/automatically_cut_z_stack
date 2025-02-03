@@ -27,8 +27,8 @@ Run the script, and if it correctly detects the cuts, the processed images will 
 "Do you want to continue with cutting these images [Y/N]?" 
 ```
 
-Type 'N'  Skips manual cutting. The unprocessed images will be stored in {file_path_saved}/not_cut_yet.\ 
-Type 'Y' Proceeds with manual cutting. You will be prompted with: <p>
+Type 'N' to skip manual cutting. The unprocessed images will be stored in {file_path_saved}/not_cut_yet.<p>
+Type 'Y' to proceed with manual cutting. You will be prompted with: <p>
 
 ```python
 "Open the file {file-path}/{item} in ImageJ" 
