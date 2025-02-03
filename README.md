@@ -2,7 +2,7 @@
 This algorithm allows you to automatically crop images in a Z-stack by detecting and retaining only the sharpest regions. It identifies the starting and ending points where the images remain in focus, ensuring that only the sharpest slices are kept.
 
 # Installation
-Before using the algorithm, ensure you have the following libraries installed in your local environment: numpy, scipy, imageio. This can be done by: 
+Before using the algorithm, ensure you have the following libraries installed in your local environment: numpy, scipy, imageio. 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install these.
 
 ```bash
