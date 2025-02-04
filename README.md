@@ -72,7 +72,7 @@ If not; use the package manager [pip](https://pip.pypa.io/en/stable/) to install
 pip install imageio tifffile
 ```
 
-## inputs 
+## Inputs 
 To proceed, update the following inputs at the bottom of the manual_cutting.py script:
 
 * file_path: Path to the folder containing images that still need to be cut manually. (This corresponds to {file_path_saved}/not_cut_yet from the automatically_cut_z_stack.py script.)
