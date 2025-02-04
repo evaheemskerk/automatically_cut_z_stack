@@ -3,6 +3,7 @@ import shutil
 import os
 from scipy.signal import find_peaks
 import imageio
+import tifffile
 
 #This definition is to smooth the curves
 def smooth(data, number_of_points=7):
@@ -49,14 +50,14 @@ def cut_z_stack(file_path, file_path_save, high_intensity):
         if len(cut_start_zeros) == 1 and len(cut_end_zeros) == 1 and cut_start_zeros[0]<cut_end_zeros[0]:
             cut_start_zeros = cut_start_zeros[0]
             cut_end_zeros = cut_end_zeros[0]
-            imageio.mimwrite(f"{file_path_save}/{item}_{cut_start_zeros}_{cut_end_zeros}.tif",
-                             segmented_array_cytoplasm[cut_start_zeros:cut_end_zeros,:,:])
+            tifffile.imwrite(f"{file_path_save}/{item}_{cut_start_zeros}_{cut_end_zeros}.tif",
+                             segmented_array_cytoplasm[cut_start_zeros:cut_end_zeros,:,:],)
 
 
         elif len(cut_start_high) == 1 and len(cut_end_high) == 1 and cut_start_high[0]<cut_end_high[0]:
             cut_start_high = cut_start_high[0]
             cut_end_high = cut_end_high[0]
-            imageio.mimwrite(f"{file_path_save}/{item}_{cut_start_high}_{cut_end_high}.tif",
+            tifffile.imwrite(f"{file_path_save}/{item}_{cut_start_high}_{cut_end_high}.tif",
                              segmented_array_cytoplasm[cut_start_high:cut_end_high, :, :])
 
         else:
@@ -64,7 +65,6 @@ def cut_z_stack(file_path, file_path_save, high_intensity):
             print(f'For file {file}, the cutting did not work. '
                   f'It suggested: cut start {cut_start_zeros} and cut end {cut_end_zeros}. '
                   f'Or: cut start {cut_start_high} and cut end {cut_end_high}')
-            break
 
 
 
@@ -102,7 +102,7 @@ def cut_z_stack(file_path, file_path_save, high_intensity):
                         segmented_array_cytoplasm = imageio.v2.imread(file)
 
                         if start_stack < end_stack and start_stack>=0 and end_stack <= segmented_array_cytoplasm.shape[0]:
-                            imageio.mimwrite(f"{file_path_save}/{item}_{start_stack}_{end_stack}.tif",
+                            tifffile.imwrite(f"{file_path_save}/{item}_{start_stack}_{end_stack}.tif",
                                 segmented_array_cytoplasm[start_stack:end_stack, :, :])
                             break
 
@@ -138,8 +138,8 @@ def cut_z_stack(file_path, file_path_save, high_intensity):
 
 #Input
 #THE INPUT SHOULD BE TIF IMAGES IN 3D AND ALREADY B&C ADJUSTED (BLOW UP THE CONTRAST AND BRIGHTNESS)
-file_path =f"F:/Eva/CY5_HuRKO/BandC/0H" #Add is the filepath with all the images that need cutting
-file_path_save = f"F:/Eva/CY5_HuRKO/cut/test" #Add here the filepath where all the images need to be saved after cutting
+file_path =f"F:/Eva/CY5_HuRKO/BandC/4H" #Add is the filepath with all the images that need cutting
+file_path_save = (f"F:/Eva/CY5_HuRKO/cut/4H") #Add here the filepath where all the images need to be saved after cutting
 high_intensity = 60000 #Add here the value of the highest intensity
 
 cut_z_stack(file_path, file_path_save, high_intensity)
