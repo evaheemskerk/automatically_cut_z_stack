@@ -64,7 +64,8 @@ def cut_z_stack(file_path, file_path_save, high_intensity):
             print(f'For file {file}, the cutting did not work. '
                   f'It suggested: cut start {cut_start_zeros} and cut end {cut_end_zeros}. '
                   f'Or: cut start {cut_start_high} and cut end {cut_end_high}')
-            
+            break
+
 
 
     while True:
@@ -91,9 +92,6 @@ def cut_z_stack(file_path, file_path_save, high_intensity):
                             print('\nYou did not put in an integer, try again.')
                             continue
 
-
-                        start_stack = int(start_stack)
-                        end_stack = int(end_stack)
 
                         #hier nog iets toevoegen van als niet integer, geen error maar opnieuw!!
 
