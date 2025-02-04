@@ -4,7 +4,7 @@ This algorithm allows you to automatically crop images in a Z-stack by detecting
 # Content
 * Adjust_B_and_C_folder.ijm - ImageJ macro to adjust the brightness and contrast of all images in a folder.
 * automatically_cut_z_stack.py - Script that processes all images in a folder, automatically cropping them based on sharpness. If automatic cutting fails for some images, the script prompts the user to continue with manual cutting.
-* cutting_by_eye.py - Script for manually cutting images that could not be processed automatically.
+* manual_cutting.py - Script for manually cutting images that could not be processed automatically.
   
 # Pre-processing the images 
 Before running the algorithm, it is important to pre-process the images by adjusting brightness and contrast. You can use the ImageJ macro called Adjust_B_and_C_folder.ijm to batch process the images.
@@ -28,7 +28,7 @@ These values may vary depending on your images. Adjust them as needed to optimiz
 
 ## Installation
 Before using the python algorithm, ensure you have the following libraries installed in your local environment: numpy, scipy, imageio, tifffile. 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install these.
+If not; use the package manager [pip](https://pip.pypa.io/en/stable/) to install these.
 
 ```bash
 pip install numpy scipy imageio tifffile
@@ -49,7 +49,7 @@ Run the script, and if it correctly detects the cuts, the processed images will 
 "Do you want to continue with cutting these images [Y/N]?" 
 ```
 
-Type 'N' to skip manual cutting. The unprocessed images will be stored in {file_path_saved}/not_cut_yet. You can continue automatically cutting on a later moment using the code 'cutting_by_eye.py' <p>
+Type 'N' to skip manual cutting. The unprocessed images will be stored in {file_path_saved}/not_cut_yet. You can continue automatically cutting on a later moment using the code 'manuel_cutting.py' <p>
 Type 'Y' to proceed with manual cutting. You will be prompted with: <p>
 
 ```python
@@ -61,18 +61,19 @@ Type 'Y' to proceed with manual cutting. You will be prompted with: <p>
 
 Enter the corresponding slice indices where cuts should be applied. These slices will be included in the final processed Z-stack. The process will repeat for all images that required manual intervention, significantly speeding up the workflow.
 
-# Usage of cutting_by_eye.py
+# Usage of manual_cutting.py
+If you want to continue manual cutting at a later time, this is possible because images that were not automatically cut are saved in {file_path_saved}/not_cut_yet.
 
 ## Installation
 Before using the python algorithm, ensure you have the following libraries installed in your local environment: imageio, tifffile. 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install these.
+If not; use the package manager [pip](https://pip.pypa.io/en/stable/) to install these.
 
 ```bash
 pip install imageio tifffile
 ```
 
 ## inputs 
-If you want to continue manual cutting at a later time, this is possible because images that were not automatically cut are saved in {file_path_saved}/not_cut_yet. To proceed, update the following inputs at the bottom of the Cutting_by_eye.py script:
+To proceed, update the following inputs at the bottom of the manual_cutting.py script:
 
 * file_path: Path to the folder containing images that still need to be cut manually. (This corresponds to {file_path_saved}/not_cut_yet from the automatically_cut_z_stack.py script.)
 * file_path_save: Path to the folder where the manually cut images should be saved. (This should match {file_path_saved} from automatically_cut_z_stack.py.)
