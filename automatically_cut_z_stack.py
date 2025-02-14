@@ -51,14 +51,14 @@ def cut_z_stack(file_path, file_path_save, high_intensity):
             cut_start_zeros = cut_start_zeros[0]
             cut_end_zeros = cut_end_zeros[0]
             tifffile.imwrite(f"{file_path_save}/{item}_{cut_start_zeros}_{cut_end_zeros}.tif",
-                             segmented_array_cytoplasm[cut_start_zeros:cut_end_zeros,:,:],)
+                             segmented_array_cytoplasm[cut_start_zeros-1:cut_end_zeros,:,:],)
 
 
         elif len(cut_start_high) == 1 and len(cut_end_high) == 1 and cut_start_high[0]<cut_end_high[0]:
             cut_start_high = cut_start_high[0]
             cut_end_high = cut_end_high[0]
             tifffile.imwrite(f"{file_path_save}/{item}_{cut_start_high}_{cut_end_high}.tif",
-                             segmented_array_cytoplasm[cut_start_high:cut_end_high, :, :])
+                             segmented_array_cytoplasm[cut_start_high-1:cut_end_high, :, :])
 
         else:
             not_cut.append(item)
@@ -103,7 +103,7 @@ def cut_z_stack(file_path, file_path_save, high_intensity):
 
                         if start_stack < end_stack and start_stack>=0 and end_stack <= segmented_array_cytoplasm.shape[0]:
                             tifffile.imwrite(f"{file_path_save}/{item}_{start_stack}_{end_stack}.tif",
-                                segmented_array_cytoplasm[start_stack:end_stack, :, :])
+                                segmented_array_cytoplasm[start_stack-1:end_stack, :, :])
                             break
 
                         else:
